@@ -13,6 +13,8 @@
 		8D3AC350200103B00019AE11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC34F200103B00019AE11 /* Assets.xcassets */; };
 		8D3AC353200103B00019AE11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC351200103B00019AE11 /* LaunchScreen.storyboard */; };
 		8D3AC356200103B00019AE11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC355200103B00019AE11 /* main.m */; };
+		8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC35D2003D6C30019AE11 /* UIFontVC.m */; };
+		8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		8D3AC352200103B00019AE11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D3AC354200103B00019AE11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D3AC355200103B00019AE11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8D3AC35C2003D6C30019AE11 /* UIFontVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFontVC.h; sourceTree = "<group>"; };
+		8D3AC35D2003D6C30019AE11 /* UIFontVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIFontVC.m; sourceTree = "<group>"; };
+		8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringVC.h; sourceTree = "<group>"; };
+		8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				8D3AC347200103B00019AE11 /* AppDelegate.m */,
 				8D3AC349200103B00019AE11 /* ViewController.h */,
 				8D3AC34A200103B00019AE11 /* ViewController.m */,
+				8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */,
+				8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */,
+				8D3AC35C2003D6C30019AE11 /* UIFontVC.h */,
+				8D3AC35D2003D6C30019AE11 /* UIFontVC.m */,
 				8D3AC34C200103B00019AE11 /* Main.storyboard */,
 				8D3AC34F200103B00019AE11 /* Assets.xcassets */,
 				8D3AC351200103B00019AE11 /* LaunchScreen.storyboard */,
@@ -142,9 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */,
 				8D3AC34B200103B00019AE11 /* ViewController.m in Sources */,
 				8D3AC356200103B00019AE11 /* main.m in Sources */,
 				8D3AC348200103B00019AE11 /* AppDelegate.m in Sources */,
+				8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
