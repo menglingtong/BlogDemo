@@ -27,7 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.img = [UIImage imageNamed:@"LGH"];
+//    AutoAdjust 自动 | Instant 怀旧 | Process 冲印 Chrome 铬黄 | Mono 单色 | Tonal 色调 Fade 褪色 | Noir 黑白 | Transfer 岁月
+    self.img = [UIImage imageNamed:@"HS"];
     
     self.originalImgView = [UIImageView new];
     self.originalImgView.frame = CGRectMake(20, 90, 365, 210);
@@ -72,8 +73,8 @@
     [self.view addSubview:filterBtn4];
     
     UIButton *filterBtn5 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [filterBtn5 addTarget:self action:@selector(progressFilter) forControlEvents:UIControlEventTouchUpInside];
-    [filterBtn5 setTitle:@"progress" forState:UIControlStateNormal];
+    [filterBtn5 addTarget:self action:@selector(processFilter) forControlEvents:UIControlEventTouchUpInside];
+    [filterBtn5 setTitle:@"process" forState:UIControlStateNormal];
     filterBtn5.titleLabel.font = [UIFont systemFontOfSize:14];
     [filterBtn5 setTitleColor:[UIColor colorWithRed:0.20 green:0.20 blue:0.20 alpha:1.00] forState:UIControlStateNormal];
     filterBtn5.frame = CGRectMake(260, 560, kBtnW, kBtnH);
@@ -120,7 +121,7 @@
     self.filterImgView.image = [self outputImageWithFilterName:@"CIPhotoEffectNoir"];
 }
 
-- (void)progressFilter {
+- (void)processFilter {
     self.filterImgView.image = [self outputImageWithFilterName:@"CIPhotoEffectProcess"];
 }
 
