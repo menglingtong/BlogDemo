@@ -26,7 +26,7 @@
 //    demoLabel.font = [UIFont systemFontOfSize:20 weight:700];
 //    demoLabel.font = [UIFont boldSystemFontOfSize:20];
 //    demoLabel.font = [UIFont italicSystemFontOfSize:20];
-    demoLabel.font = [UIFont fontWithName:@"TimesNewRomanPSMT" size:20];
+    demoLabel.font = [UIFont fontWithName:@"vtksanimal2" size:20];
     
     NSArray *familyNames = [UIFont familyNames];
     for (NSString *familyName in familyNames)
