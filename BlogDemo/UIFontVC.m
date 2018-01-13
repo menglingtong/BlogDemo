@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     UILabel *demoLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 100, 150, 80)];
     demoLabel.text = @"HIPPOP";

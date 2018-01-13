@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8D15CC792008DD45004D1040 /* ShadeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15CC782008DD45004D1040 /* ShadeVC.m */; };
 		8D15CC7C20090CF7004D1040 /* ShadeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15CC7B20090CF7004D1040 /* ShadeLabel.m */; };
+		8D15CC7F2009D094004D1040 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15CC7E2009D094004D1040 /* BaseVC.m */; };
+		8D15CC822009D142004D1040 /* FilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D15CC812009D142004D1040 /* FilterVC.m */; };
 		8D3AC348200103B00019AE11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC347200103B00019AE11 /* AppDelegate.m */; };
 		8D3AC34B200103B00019AE11 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC34A200103B00019AE11 /* ViewController.m */; };
 		8D3AC34E200103B00019AE11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC34C200103B00019AE11 /* Main.storyboard */; };
@@ -25,6 +27,10 @@
 		8D15CC782008DD45004D1040 /* ShadeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadeVC.m; sourceTree = "<group>"; };
 		8D15CC7A20090CF7004D1040 /* ShadeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShadeLabel.h; sourceTree = "<group>"; };
 		8D15CC7B20090CF7004D1040 /* ShadeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadeLabel.m; sourceTree = "<group>"; };
+		8D15CC7D2009D094004D1040 /* BaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseVC.h; sourceTree = "<group>"; };
+		8D15CC7E2009D094004D1040 /* BaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
+		8D15CC802009D142004D1040 /* FilterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterVC.h; sourceTree = "<group>"; };
+		8D15CC812009D142004D1040 /* FilterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterVC.m; sourceTree = "<group>"; };
 		8D3AC343200103B00019AE11 /* BlogDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3AC346200103B00019AE11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8D3AC347200103B00019AE11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +81,8 @@
 				8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */,
 				8D3AC346200103B00019AE11 /* AppDelegate.h */,
 				8D3AC347200103B00019AE11 /* AppDelegate.m */,
+				8D15CC7D2009D094004D1040 /* BaseVC.h */,
+				8D15CC7E2009D094004D1040 /* BaseVC.m */,
 				8D3AC349200103B00019AE11 /* ViewController.h */,
 				8D3AC34A200103B00019AE11 /* ViewController.m */,
 				8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */,
@@ -85,6 +93,8 @@
 				8D15CC782008DD45004D1040 /* ShadeVC.m */,
 				8D15CC7A20090CF7004D1040 /* ShadeLabel.h */,
 				8D15CC7B20090CF7004D1040 /* ShadeLabel.m */,
+				8D15CC802009D142004D1040 /* FilterVC.h */,
+				8D15CC812009D142004D1040 /* FilterVC.m */,
 				8D3AC34C200103B00019AE11 /* Main.storyboard */,
 				8D3AC34F200103B00019AE11 /* Assets.xcassets */,
 				8D3AC351200103B00019AE11 /* LaunchScreen.storyboard */,
@@ -173,6 +183,8 @@
 				8D3AC356200103B00019AE11 /* main.m in Sources */,
 				8D3AC348200103B00019AE11 /* AppDelegate.m in Sources */,
 				8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */,
+				8D15CC822009D142004D1040 /* FilterVC.m in Sources */,
+				8D15CC7F2009D094004D1040 /* BaseVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

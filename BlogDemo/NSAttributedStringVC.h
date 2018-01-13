@@ -6,8 +6,8 @@
 //  Copyright © 2018年 LryMlt. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface NSAttributedStringVC : UIViewController
+@interface NSAttributedStringVC : BaseVC
 
 @end

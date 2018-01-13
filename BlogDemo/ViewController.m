@@ -32,6 +32,7 @@
     [self.dataSource addObject:@"NSAttributedStringVC"];
     [self.dataSource addObject:@"UIFontVC"];
     [self.dataSource addObject:@"ShadeVC"];
+    [self.dataSource addObject:@"FilterVC"];
     
     [self.tableView reloadData];
 }

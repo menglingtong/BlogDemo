@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     NSString *str = @"这句话就是对这个类的一个最简明扼要的概括。NSAttributedString管理一个字符串，以及与该字符串中的单个字符或某些范围的字符串相关的属性。它有一个子类NSMutableAttributedString。具体实现时，NSAttributedString维护了一个NSString，用来保存最原始的字符串，另有一个NSDictionary用来保存各个子串/字符的属性。";
     

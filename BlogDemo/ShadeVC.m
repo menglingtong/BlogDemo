@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     UILabel *demoLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 100, 350, 180)];
     demoLabel.text = @"曾经有一份真挚的感情放在我的面前，我没有好好的珍惜，等到失去后，我才后悔莫急！人世间最痛苦的事莫过于此。如果老天能再给我一次机会的话，我会对那女孩说三个字：“我爱你！”如果非要加上一个期限的话，我希望是一万年！ ";

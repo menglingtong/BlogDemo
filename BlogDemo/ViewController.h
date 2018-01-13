@@ -6,9 +6,9 @@
 //  Copyright © 2018年 LryMlt. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : BaseVC
 
 
 @end
