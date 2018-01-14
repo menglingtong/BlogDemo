@@ -156,7 +156,10 @@
     
     // 3.
     // 获取绘制上下文
-    self.context = [CIContext contextWithOptions:nil];
+//    self.context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:kCIContextUseSoftwareRenderer]];
+    // OpenGL 优化context
+    EAGLContext *eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+    self.context = [CIContext contextWithEAGLContext:eaglContext];
     // 创建CGImage句柄
     CGImageRef cgImage = [self.context createCGImage:outputImage fromRect:[outputImage extent]];
     // 获取图片
