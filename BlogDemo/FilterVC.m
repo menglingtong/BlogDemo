@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self showFilters];
 //    AutoAdjust 自动 | Instant 怀旧 | Process 冲印 Chrome 铬黄 | Mono 单色 | Tonal 色调 Fade 褪色 | Noir 黑白 | Transfer 岁月
     self.img = [UIImage imageNamed:@"HS"];
     
@@ -164,6 +165,16 @@
     CGImageRelease(cgImage);
     
     return image;
+}
+
+- (void)showFilters {
+    NSArray *filterNames = [CIFilter filterNamesInCategory:kCICategoryColorEffect];
+    for (NSString *filterName in filterNames) {
+        NSLog(@"%@", filterName);
+        CIFilter *filter = [CIFilter filterWithName:filterName];
+        NSDictionary *attributes = filter.attributes;
+        NSLog(@"%@", attributes);   // 查看属性
+    }
 }
 
 - (void)didReceiveMemoryWarning {
