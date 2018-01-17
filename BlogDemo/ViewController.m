@@ -32,6 +32,7 @@
     [self.dataSource addObject:@"NSAttributedStringVC"];
     [self.dataSource addObject:@"UIFontVC"];
     [self.dataSource addObject:@"ShadeVC"];
+    [self.dataSource addObject:@"CoreImageSampleVC"];
     [self.dataSource addObject:@"FilterVC"];
     [self.dataSource addObject:@"OpenGLESRenderVC"];
     
