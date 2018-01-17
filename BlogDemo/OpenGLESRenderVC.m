@@ -23,7 +23,7 @@
     CGRect frame = CGRectMake(20, 90, 365, 210);
     
     // 创建 OpenGLES 渲染的上下文
-    EAGLContext *eaGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    EAGLContext *eaGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     // 创建渲染的GL图层
     self.glkView = [[GLKView alloc] initWithFrame:frame context:eaGLContext];
     [self.glkView bindDrawable];
@@ -40,6 +40,20 @@
     [self.ciContext drawImage:[_ciFilter outputImage] inRect:CGRectMake(0, 0, _glkView.drawableWidth, _glkView.drawableHeight) fromRect:[_ciImage extent]];
     [self.glkView display];
     
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(30, 400, 320, 20)];
+    slider.minimumValue = 0;
+    slider.maximumValue = 1;
+    [slider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:slider];
+}
+
+- (void)sliderChanged:(UISlider *)slider
+{
+    [self.ciFilter setValue:_ciImage forKey:kCIInputImageKey];
+    [self.ciFilter setValue:@(slider.value) forKey:kCIInputIntensityKey];
+    // 开始渲染
+    [self.ciContext drawImage:[_ciFilter outputImage] inRect:CGRectMake(0, 0, _glkView.drawableWidth, _glkView.drawableHeight) fromRect:[_ciImage extent]];
+    [self.glkView display];
 }
 
 - (void)didReceiveMemoryWarning {
