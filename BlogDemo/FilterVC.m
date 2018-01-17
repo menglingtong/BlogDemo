@@ -29,7 +29,7 @@
     // Do any additional setup after loading the view.
     [self showFilters];
 //    AutoAdjust 自动 | Instant 怀旧 | Process 冲印 Chrome 铬黄 | Mono 单色 | Tonal 色调 Fade 褪色 | Noir 黑白 | Transfer 岁月
-    self.img = [UIImage imageNamed:@"HS"];
+    self.img = [UIImage imageNamed:@"FJ"];
     
     self.originalImgView = [UIImageView new];
     self.originalImgView.frame = CGRectMake(20, 90, 365, 210);
@@ -156,10 +156,11 @@
     
     // 3.
     // 获取绘制上下文
-//    self.context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:kCIContextUseSoftwareRenderer]];
+    self.context = [CIContext contextWithOptions:nil];
     // OpenGL 优化context
-    EAGLContext *eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
-    self.context = [CIContext contextWithEAGLContext:eaglContext];
+//    EAGLContext *eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+//    self.context = [CIContext contextWithEAGLContext:eaglContext];
+//    [self.context drawImage:outputImage inRect:[outputImage extent] fromRect:[outputImage extent]];
     // 创建CGImage句柄
     CGImageRef cgImage = [self.context createCGImage:outputImage fromRect:[outputImage extent]];
     // 获取图片

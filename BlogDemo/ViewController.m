@@ -33,6 +33,7 @@
     [self.dataSource addObject:@"UIFontVC"];
     [self.dataSource addObject:@"ShadeVC"];
     [self.dataSource addObject:@"FilterVC"];
+    [self.dataSource addObject:@"OpenGLESRenderVC"];
     
     [self.tableView reloadData];
 }

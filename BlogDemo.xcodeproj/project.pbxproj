@@ -20,6 +20,7 @@
 		8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC35D2003D6C30019AE11 /* UIFontVC.m */; };
 		8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */; };
 		8D3AC3652004A5800019AE11 /* VTKS ANIMAL 2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */; };
+		8D9C3AE4200EE1910084B237 /* OpenGLESRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringVC.h; sourceTree = "<group>"; };
 		8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringVC.m; sourceTree = "<group>"; };
 		8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VTKS ANIMAL 2.ttf"; sourceTree = "<group>"; };
+		8D9C3AE2200EE1910084B237 /* OpenGLESRenderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenGLESRenderVC.h; sourceTree = "<group>"; };
+		8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLESRenderVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				8D15CC7B20090CF7004D1040 /* ShadeLabel.m */,
 				8D15CC802009D142004D1040 /* FilterVC.h */,
 				8D15CC812009D142004D1040 /* FilterVC.m */,
+				8D9C3AE2200EE1910084B237 /* OpenGLESRenderVC.h */,
+				8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */,
 				8D3AC34C200103B00019AE11 /* Main.storyboard */,
 				8D3AC34F200103B00019AE11 /* Assets.xcassets */,
 				8D3AC351200103B00019AE11 /* LaunchScreen.storyboard */,
@@ -179,6 +184,7 @@
 				8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */,
 				8D3AC34B200103B00019AE11 /* ViewController.m in Sources */,
 				8D15CC792008DD45004D1040 /* ShadeVC.m in Sources */,
+				8D9C3AE4200EE1910084B237 /* OpenGLESRenderVC.m in Sources */,
 				8D15CC7C20090CF7004D1040 /* ShadeLabel.m in Sources */,
 				8D3AC356200103B00019AE11 /* main.m in Sources */,
 				8D3AC348200103B00019AE11 /* AppDelegate.m in Sources */,
