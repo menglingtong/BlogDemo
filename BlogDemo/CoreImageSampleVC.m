@@ -21,10 +21,14 @@
     // 1. 创建一个CIImage
     CIImage *ciImage = [[CIImage alloc] initWithImage:demoImg];
     // 2. 创建一个CIFilter（滤镜）
-    CIFilter *ciFilter = [CIFilter filterWithName:@"CIHoleDistortion"];
+    CIFilter *ciFilter = [CIFilter filterWithName:@"CICrystallize"];
     [ciFilter setValue:ciImage forKey:kCIInputImageKey];
-//    [ciFilter setValue:@[@(frame.size.width), @(frame.size.height)] forKey:kCIInputCenterKey];
+    NSLog(@"%@", ciFilter.attributes);
     [ciFilter setDefaults];
+    
+//    [ciFilter setValue:[CIVector vectorWithX:200 Y:200] forKey:kCIInputCenterKey];
+//    [ciFilter setValue:@(50) forKey:kCIInputRadiusKey];
+//    [ciFilter setValue:@(3.14) forKey:kCIInputAngleKey];
     // 3. 创建绘制上下文CIContext 这里默认CPU渲染
     CIContext *ciContext = [[CIContext alloc] initWithOptions:nil];
     // 创建CGImage句柄
