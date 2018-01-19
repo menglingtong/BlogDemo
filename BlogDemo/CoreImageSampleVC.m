@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIImage *demoImg = [UIImage imageNamed:@"HS"];
-    CGRect frame = CGRectMake(20, 90, 365, 210);
     // 1. 创建一个CIImage
     CIImage *ciImage = [[CIImage alloc] initWithImage:demoImg];
     // 2. 创建一个CIFilter（滤镜）
@@ -26,16 +25,16 @@
     NSLog(@"%@", ciFilter.attributes);
     [ciFilter setDefaults];
     
-//    [ciFilter setValue:[CIVector vectorWithX:200 Y:200] forKey:kCIInputCenterKey];
-//    [ciFilter setValue:@(50) forKey:kCIInputRadiusKey];
-//    [ciFilter setValue:@(3.14) forKey:kCIInputAngleKey];
+    [ciFilter setValue:[CIVector vectorWithX:200 Y:200] forKey:kCIInputCenterKey];
+    [ciFilter setValue:@(50) forKey:kCIInputRadiusKey];
+    
     // 3. 创建绘制上下文CIContext 这里默认CPU渲染
     CIContext *ciContext = [[CIContext alloc] initWithOptions:nil];
     // 创建CGImage句柄
     CGImageRef cgImage = [ciContext createCGImage:[ciFilter outputImage] fromRect:[[ciFilter outputImage] extent]];
     
     UIImageView *demoImgView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:cgImage]];
-    demoImgView.frame = frame;
+    demoImgView.frame = CGRectMake(20, 90, 365, 210);
     [self.view addSubview:demoImgView];
     // 释放句柄
     CGImageRelease(cgImage);
