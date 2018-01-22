@@ -20,18 +20,24 @@
     // 1. 创建一个CIImage
     CIImage *ciImage = [[CIImage alloc] initWithImage:demoImg];
     // 2. 创建一个CIFilter（滤镜）
-    CIFilter *ciFilter = [CIFilter filterWithName:@"CICrystallize"];
-    [ciFilter setValue:ciImage forKey:kCIInputImageKey];
-    NSLog(@"%@", ciFilter.attributes);
-    [ciFilter setDefaults];
+    CIFilter *ciFilterOne = [CIFilter filterWithName:@"CICrystallize"];
+    [ciFilterOne setValue:ciImage forKey:kCIInputImageKey];
+    NSLog(@"%@", ciFilterOne.attributes);
+    [ciFilterOne setDefaults];
     
-    [ciFilter setValue:[CIVector vectorWithX:200 Y:200] forKey:kCIInputCenterKey];
-    [ciFilter setValue:@(50) forKey:kCIInputRadiusKey];
+    [ciFilterOne setValue:[CIVector vectorWithX:200 Y:200] forKey:kCIInputCenterKey];
+    [ciFilterOne setValue:@(50) forKey:kCIInputRadiusKey];
+    
+    // 2.1 创建第二个滤镜
+    CIFilter *ciFilterTwo = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [ciFilterTwo setDefaults];
+    [ciFilterTwo setValue:ciFilterOne.outputImage forKey:kCIInputImageKey];
+    [ciFilterTwo setValue:@(20) forKey:kCIInputRadiusKey];
     
     // 3. 创建绘制上下文CIContext 这里默认CPU渲染
     CIContext *ciContext = [[CIContext alloc] initWithOptions:nil];
     // 创建CGImage句柄
-    CGImageRef cgImage = [ciContext createCGImage:[ciFilter outputImage] fromRect:[[ciFilter outputImage] extent]];
+    CGImageRef cgImage = [ciContext createCGImage:[ciFilterTwo outputImage] fromRect:[[ciFilterTwo outputImage] extent]];
     
     UIImageView *demoImgView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:cgImage]];
     demoImgView.frame = CGRectMake(20, 90, 365, 210);
