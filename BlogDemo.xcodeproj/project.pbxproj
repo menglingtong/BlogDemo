@@ -334,7 +334,7 @@
 				DEVELOPMENT_TEAM = 6T4NBF4XM2;
 				INFOPLIST_FILE = BlogDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.lrymlt.VideoTest2017-06-12-cn.lrymlt.VideoTest2017-06-12-cn.lrymlt.VideoTest2017-06-12-cn.lrymlt.VideoTest2017-06-12";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.lrymlt.VideoTest2017-06-12";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -348,7 +348,7 @@
 				DEVELOPMENT_TEAM = 6T4NBF4XM2;
 				INFOPLIST_FILE = BlogDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.lrymlt.VideoTest2017-06-12-cn.lrymlt.VideoTest2017-06-12-cn.lrymlt.VideoTest2017-06-12-cn.lrymlt.VideoTest2017-06-12";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.lrymlt.VideoTest2017-06-12";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
