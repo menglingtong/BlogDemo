@@ -25,20 +25,46 @@
 
 - (void)_setupCamera
 {
-//    if (@available(iOS 10.0, *)) {
-//        AVCaptureDeviceDiscoverySession *devicesSession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+
+//    AVCaptureDeviceDiscoverySession *devicesSession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
 //
-//        NSArray *videoDevices = devicesSession.devices;
-//        _videoDevice = [videoDevices firstObject];
-//    } else {
-        NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-        for (AVCaptureDevice *device in videoDevices) {
-            if (device.position == AVCaptureDevicePositionBack) {
-                _videoDevice = device;
-                break;
-            }
+//    NSArray *videoDevices = devicesSession.devices;
+//    _videoDevice = [videoDevices firstObject];
+
+    NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in videoDevices) {
+        if (device.position == AVCaptureDevicePositionBack) {
+            _videoDevice = device;
+            break;
         }
-//    }
+    }
+    
+    NSError *error = nil;
+    AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_videoDevice error:&error];
+    if (!deviceInput)
+    {
+        NSLog(@"%@", [NSString stringWithFormat:@"Unable to obtain video device input, error: %@", error]);
+        return;
+    }
+    
+    // obtain the preset and validate the preset
+    NSString *preset = AVCaptureSessionPresetMedium;
+    if (![_videoDevice supportsAVCaptureSessionPreset:preset])
+    {
+        NSLog(@"%@", [NSString stringWithFormat:@"Capture session preset not supported by video device: %@", preset]);
+        return;
+    }
+    
+    _captureSession = [[AVCaptureSession alloc] init];
+    _captureSession.sessionPreset = preset;
+    
+// Configure captureSession. Since we will use CIImage and CIFilter to apply filter to video output, we need to change the output format to kCVPixelFormatType32BGRA which can be used by CIImage.
+    // CoreImage wants BGRA pixel format
+    NSDictionary *outputSettings = @{
+                                     (id)kCVPixelBufferPixelFormatTypeKey : [NSNumber numberWithInteger:kCVPixelFormatType_32BGRA]
+                                     };
+    AVCaptureVideoDataOutput *videoOutPutData = [[AVCaptureVideoDataOutput alloc] init];
+    videoOutPutData.videoSettings = outputSettings;
 }
 
 - (void)didReceiveMemoryWarning {
