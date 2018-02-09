@@ -35,6 +35,7 @@
     [self.dataSource addObject:@"CoreImageSampleVC"];
     [self.dataSource addObject:@"FilterVC"];
     [self.dataSource addObject:@"OpenGLESRenderVC"];
+    [self.dataSource addObject:@"RealTimeFilterVC"];
     
     [self.tableView reloadData];
 }

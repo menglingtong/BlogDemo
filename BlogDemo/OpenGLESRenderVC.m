@@ -35,7 +35,7 @@
     // 设置滤镜
     self.ciFilter = [CIFilter filterWithName:@"CISepiaTone"];
     [self.ciFilter setValue:_ciImage forKey:kCIInputImageKey];
-    [self.ciFilter setValue:@(1) forKey:kCIInputIntensityKey];
+    [self.ciFilter setValue:@(0) forKey:kCIInputIntensityKey];
     // 开始渲染
     [self.ciContext drawImage:[_ciFilter outputImage] inRect:CGRectMake(0, 0, _glkView.drawableWidth, _glkView.drawableHeight) fromRect:[_ciImage extent]];
     [self.glkView display];
