@@ -9,10 +9,10 @@
 #import "RealTimeFilterVC.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface RealTimeFilterVC ()
+@interface RealTimeFilterVC ()<AVCaptureVideoDataOutputSampleBufferDelegate>
 @property (nonatomic, strong) AVCaptureDevice *videoDevice;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
-@property (nonatomic, assign) dispatch_queue_t captureSessionQueue;
+@property (nonatomic, copy) dispatch_queue_t captureSessionQueue;
 @end
 
 @implementation RealTimeFilterVC
@@ -65,6 +65,19 @@
                                      };
     AVCaptureVideoDataOutput *videoOutPutData = [[AVCaptureVideoDataOutput alloc] init];
     videoOutPutData.videoSettings = outputSettings;
+    
+// AVCaptureVideoDataOutput object vend video frames by delegate(captureOutput:didOutputSampleBuffer:fromConnection:). Set the delegate using setSampleBufferDelegate:queue:. You also need to pass a serial queue to ensure that frames are delivered to the delegate in the proper order.
+    
+    // create the dispatch queue for handling capture session delegate method calls
+    _captureSessionQueue = dispatch_queue_create("capture_session_queue", NULL);
+    [videoOutPutData setSampleBufferDelegate:self queue:_captureSessionQueue];
+    
+//    Set alwaysDiscardsLateVideoFrames property to YES. This ensures that any late video frames are dropped rather than output to delegate.
+    videoOutPutData.alwaysDiscardsLateVideoFrames = YES;
+    
+//    Add videoDeviceInput and videoDataOutput to _captureSession and start it. The beginConfiguration andcommitConfiguration methods ensure that devices changes occur as a group, minimizing visibility or inconsistency of state.
+    
+//    begin configure capture session
 }
 
 - (void)didReceiveMemoryWarning {
