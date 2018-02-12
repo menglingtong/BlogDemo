@@ -29,7 +29,7 @@
     // remove the view's background color; this allows us not to use the opaque property (self.view.opaque = NO) since we remove the background color drawing altogether
     self.view.backgroundColor = [UIColor clearColor];
     [self _setupGLKView];
-    [self _setupCamera];
+    [self _setupCoreImage];
 }
 
 - (void)_setupGLKView
@@ -61,6 +61,22 @@
     _videoPreviewViewBounds = CGRectZero;
     _videoPreviewViewBounds.size.width = _videoPreviewView.drawableWidth;
     _videoPreviewViewBounds.size.height = _videoPreviewView.drawableHeight;
+}
+
+- (void)_setupCoreImage
+{
+//    CoreImage contains multitude of filters ready to support image processing. We need CIImage, CIFilter and CIContext to take advantage of the built-in Core Image filters when processing images. Core Image uses CPU or GPU for rendering. Since this project require real time image processing, we need to force the Core Image to use GPU all the time by creating a CIContext instance with EAGLContext instance.
+//
+//    i) At the end of viewDidLoad, create CIContext instance with eaglContext and then call the start method.
+    // create the CIContext instance, note that this must be done after _videoPreviewView is properly set up
+    
+    _ciContext = [CIContext contextWithEAGLContext:_eaglContext options:@{kCIContextWorkingColorSpace:[NSNull null]}];
+    
+    if ([[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] > 0) {
+        [self  _setupCamera];
+    } else {
+        NSLog(@"No device with AVMediaTypeVideo");
+    }
 }
 
 - (void)_setupCamera
@@ -134,6 +150,62 @@
     
 //    then start everything
     [_captureSession startRunning];
+}
+
+#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
+- (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+{
+    // iii) Inside captureOutput: didOutputSampleBuffer: fromConnection: method, convert output data to CIImage object by adding this code:
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CIImage *sourceImage = [CIImage imageWithCVPixelBuffer:(CVPixelBufferRef)imageBuffer options:nil];
+    CGRect sourceExtent = sourceImage.extent;
+    
+    // Image processing
+    CIFilter * vignetteFilter = [CIFilter filterWithName:@"CIVignetteEffect"];
+    [vignetteFilter setValue:sourceImage forKey:kCIInputImageKey];
+    [vignetteFilter setValue:[CIVector vectorWithX:sourceExtent.size.width/2 Y:sourceExtent.size.height/2] forKey:kCIInputCenterKey];
+    [vignetteFilter setValue:@(sourceExtent.size.width/2) forKey:kCIInputRadiusKey];
+    CIImage *filteredImage = [vignetteFilter outputImage];
+    
+    CIFilter *effectFilter = [CIFilter filterWithName:@"CIPhotoEffectInstant"];
+    [effectFilter setValue:filteredImage forKey:kCIInputImageKey];
+    filteredImage = [effectFilter outputImage];
+    
+    CGFloat sourceAspect = sourceExtent.size.width / sourceExtent.size.height;
+    CGFloat previewAspect = _videoPreviewViewBounds.size.width  / _videoPreviewViewBounds.size.height;
+    
+    // we want to maintain the aspect radio of the screen size, so we clip the video image
+    CGRect drawRect = sourceExtent;
+    if (sourceAspect > previewAspect)
+    {
+        // use full height of the video image, and center crop the width
+        drawRect.origin.x += (drawRect.size.width - drawRect.size.height * previewAspect) / 2.0;
+        drawRect.size.width = drawRect.size.height * previewAspect;
+    }
+    else
+    {
+        // use full width of the video image, and center crop the height
+        drawRect.origin.y += (drawRect.size.height - drawRect.size.width / previewAspect) / 2.0;
+        drawRect.size.height = drawRect.size.width / previewAspect;
+    }
+    
+    [_videoPreviewView bindDrawable];
+    
+    if (_eaglContext != [EAGLContext currentContext])
+        [EAGLContext setCurrentContext:_eaglContext];
+    
+    // clear eagl view to grey
+    glClearColor(0.5, 0.5, 0.5, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    // set the blend mode to "source over" so that CI will use that
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    
+    if (filteredImage)
+        [_ciContext drawImage:filteredImage inRect:_videoPreviewViewBounds fromRect:drawRect];
+    
+    [_videoPreviewView display];
 }
 
 - (void)didReceiveMemoryWarning {
