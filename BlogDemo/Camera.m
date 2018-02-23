@@ -9,8 +9,9 @@
 #import "Camera.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface Camera ()
+@interface Camera ()<AVCaptureFileOutputRecordingDelegate>
 @property (nonatomic, strong) AVCaptureSession *session;
+@property (nonatomic, strong) AVCaptureMovieFileOutput *movieOutput;
 @end
 
 @implementation Camera
@@ -27,7 +28,7 @@
 {
     NSError *error = nil;
     
-    // 1. 获取摄像头设备
+    // 1.1 获取摄像头设备
     AVCaptureDeviceDiscoverySession *deviceSession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
     NSArray *devicesArray = deviceSession.devices;
     
@@ -37,6 +38,15 @@
     }
     
     AVCaptureDevice *device = [devicesArray firstObject];
+    
+    // 1.2 获取麦克风设备
+    AVCaptureDeviceDiscoverySession *microphoneSession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInMicrophone] mediaType:AVMediaTypeAudio position:AVCaptureDevicePositionUnspecified];
+    AVCaptureDevice *microphoneDevice = [[microphoneSession devices] firstObject];
+    
+    if (![[microphoneSession devices] count]) {
+        NSLog(@"获取麦克风失败");
+        return;
+    }
     
     // 2. 获取session的预设
     NSString *preset = AVCaptureSessionPresetMedium;
@@ -51,25 +61,36 @@
         self.session.sessionPreset = preset;
     }
     
-    // 4. 初始化设备输入对象，用于获取输入数据
+    // 4.1 初始化设备输入对象，用于获取输入数据 - 视频
     AVCaptureDeviceInput *deviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
-    
     if (error) {
         NSLog(@"取得设备输入对象时出错，错误原因：%@",error.localizedDescription);
         return;
     }
     
-    // 5. 设置output
-    AVCaptureMovieFileOutput *movieOutput = [[AVCaptureMovieFileOutput alloc] init];
+    // 4.2 初始化音频设备输入对象，用于获取输入音频 - 音频
+    AVCaptureDeviceInput *audioInput = [[AVCaptureDeviceInput alloc] initWithDevice:microphoneDevice error:&error];
+    if (error) {
+        NSLog(@"取得麦克风输入对象时出错，错误原因：%@", error.localizedDescription);
+        return;
+    }
     
-    // 6. 将设备输入添加到会话中
+    // 5. 设置output
+    _movieOutput = [[AVCaptureMovieFileOutput alloc] init];
+    
+    // 6.1 将视频设备输入添加到会话中
     if ([_session canAddInput:deviceInput]) {
         [_session addInput:deviceInput];
     }
     
+    // 6.2 将音频设备输入添加到会话中
+    if ([_session canAddInput:audioInput]) {
+        [_session addInput:audioInput];
+    }
+    
     // 7. 将视频输出添加到会话中
-    if ([_session canAddOutput:movieOutput]) {
-        [_session addOutput:movieOutput];
+    if ([_session canAddOutput:_movieOutput]) {
+        [_session addOutput:_movieOutput];
     }
     
     // 8. 创建幕布用于实时展示摄像头获取到的图像
@@ -93,6 +114,32 @@
     shoot.backgroundColor = [UIColor colorWithRed:0.68 green:1.00 blue:0.22 alpha:1.00];
     
     [self.view addSubview:shoot];
+    
+    [shoot addTarget:self action:@selector(didClickedShootButton:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)didClickedShootButton:(UIButton *)button
+{
+    if ([_movieOutput isRecording]) {
+        [_movieOutput stopRecording];
+    } else {
+        NSString *outputFielPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:@"tempComment.mov"];
+        NSLog(@"保存地址 :%@",outputFielPath);
+        NSURL *fileUrl=[NSURL fileURLWithPath:outputFielPath];
+        
+        [self.movieOutput startRecordingToOutputFileURL:fileUrl recordingDelegate:self];
+    }
+}
+
+// capture output delegate
+- (void)captureOutput:(AVCaptureFileOutput *)output didStartRecordingToOutputFileAtURL:(NSURL *)fileURL fromConnections:(NSArray<AVCaptureConnection *> *)connections
+{
+    NSLog(@"did start recording");
+}
+
+- (void)captureOutput:(AVCaptureFileOutput *)output didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray<AVCaptureConnection *> *)connections error:(NSError *)error
+{
+    NSLog(@"did finish recording");
 }
 
 - (void)didReceiveMemoryWarning {
