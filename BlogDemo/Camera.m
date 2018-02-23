@@ -75,31 +75,31 @@
         return;
     }
     
-    // 5. 设置output
-    _movieOutput = [[AVCaptureMovieFileOutput alloc] init];
-    
-    // 6.1 将视频设备输入添加到会话中
+    // 5.1 将视频设备输入添加到会话中
     if ([_session canAddInput:deviceInput]) {
         [_session addInput:deviceInput];
     }
     
-    // 6.2 将音频设备输入添加到会话中
+    // 5.2 将音频设备输入添加到会话中
     if ([_session canAddInput:audioInput]) {
         [_session addInput:audioInput];
     }
     
-    // 7. 将视频输出添加到会话中
+    // 6.1 设置output
+    _movieOutput = [[AVCaptureMovieFileOutput alloc] init];
+    
+    // 6.2 将视频输出添加到会话中
     if ([_session canAddOutput:_movieOutput]) {
         [_session addOutput:_movieOutput];
     }
     
-    // 8. 创建幕布用于实时展示摄像头获取到的图像
+    // 7. 创建幕布用于实时展示摄像头获取到的图像
     AVCaptureVideoPreviewLayer *previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
     previewLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:previewLayer];
     
-    // 9. 启动会话
+    // 8. 启动会话
     [_session startRunning];
 }
 
