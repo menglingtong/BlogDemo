@@ -21,6 +21,7 @@
 		8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */; };
 		8D3AC3652004A5800019AE11 /* VTKS ANIMAL 2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */; };
 		8D6CFA30202DA6BB00AAA61E /* RealTimeFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6CFA2F202DA6BB00AAA61E /* RealTimeFilterVC.m */; };
+		8D6CFA332038022300AAA61E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6CFA322038022300AAA61E /* Camera.m */; };
 		8D9C3AE4200EE1910084B237 /* OpenGLESRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */; };
 		8D9C3AE7200FB49E0084B237 /* CoreImageSampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C3AE6200FB49E0084B237 /* CoreImageSampleVC.m */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,8 @@
 		8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VTKS ANIMAL 2.ttf"; sourceTree = "<group>"; };
 		8D6CFA2E202DA6BB00AAA61E /* RealTimeFilterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealTimeFilterVC.h; sourceTree = "<group>"; };
 		8D6CFA2F202DA6BB00AAA61E /* RealTimeFilterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeFilterVC.m; sourceTree = "<group>"; };
+		8D6CFA312038022300AAA61E /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		8D6CFA322038022300AAA61E /* Camera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		8D9C3AE2200EE1910084B237 /* OpenGLESRenderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenGLESRenderVC.h; sourceTree = "<group>"; };
 		8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLESRenderVC.m; sourceTree = "<group>"; };
 		8D9C3AE5200FB49E0084B237 /* CoreImageSampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreImageSampleVC.h; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 				8D3AC347200103B00019AE11 /* AppDelegate.m */,
 				8D15CC7D2009D094004D1040 /* BaseVC.h */,
 				8D15CC7E2009D094004D1040 /* BaseVC.m */,
+				8D6CFA312038022300AAA61E /* Camera.h */,
+				8D6CFA322038022300AAA61E /* Camera.m */,
 				8D3AC349200103B00019AE11 /* ViewController.h */,
 				8D3AC34A200103B00019AE11 /* ViewController.m */,
 				8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */,
@@ -203,6 +208,7 @@
 				8D15CC822009D142004D1040 /* FilterVC.m in Sources */,
 				8D15CC7F2009D094004D1040 /* BaseVC.m in Sources */,
 				8D9C3AE7200FB49E0084B237 /* CoreImageSampleVC.m in Sources */,
+				8D6CFA332038022300AAA61E /* Camera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6T4NBF4XM2;
 				INFOPLIST_FILE = BlogDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.lrymlt.VideoTest2017-06-12";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,7 +360,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6T4NBF4XM2;
 				INFOPLIST_FILE = BlogDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.lrymlt.VideoTest2017-06-12";
 				PRODUCT_NAME = "$(TARGET_NAME)";

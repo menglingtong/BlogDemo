@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "Camera.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +21,9 @@
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    ViewController *rootVC = [ViewController new];
+    Camera *rootVC = [Camera new];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    self.window.rootViewController = nav;
+    self.window.rootViewController = rootVC;
     [self.window makeKeyAndVisible];
     
     return YES;

@@ -159,21 +159,21 @@
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     CIImage *sourceImage = [CIImage imageWithCVPixelBuffer:(CVPixelBufferRef)imageBuffer options:nil];
     CGRect sourceExtent = sourceImage.extent;
-    
+
     // Image processing
     CIFilter * vignetteFilter = [CIFilter filterWithName:@"CIVignetteEffect"];
     [vignetteFilter setValue:sourceImage forKey:kCIInputImageKey];
     [vignetteFilter setValue:[CIVector vectorWithX:sourceExtent.size.width/2 Y:sourceExtent.size.height/2] forKey:kCIInputCenterKey];
     [vignetteFilter setValue:@(sourceExtent.size.width/2) forKey:kCIInputRadiusKey];
     CIImage *filteredImage = [vignetteFilter outputImage];
-    
+
     CIFilter *effectFilter = [CIFilter filterWithName:@"CIPhotoEffectInstant"];
     [effectFilter setValue:filteredImage forKey:kCIInputImageKey];
     filteredImage = [effectFilter outputImage];
-    
+
     CGFloat sourceAspect = sourceExtent.size.width / sourceExtent.size.height;
     CGFloat previewAspect = _videoPreviewViewBounds.size.width  / _videoPreviewViewBounds.size.height;
-    
+
     // we want to maintain the aspect radio of the screen size, so we clip the video image
     CGRect drawRect = sourceExtent;
     if (sourceAspect > previewAspect)
@@ -188,23 +188,23 @@
         drawRect.origin.y += (drawRect.size.height - drawRect.size.width / previewAspect) / 2.0;
         drawRect.size.height = drawRect.size.width / previewAspect;
     }
-    
+
     [_videoPreviewView bindDrawable];
-    
+
     if (_eaglContext != [EAGLContext currentContext])
         [EAGLContext setCurrentContext:_eaglContext];
-    
+
     // clear eagl view to grey
     glClearColor(0.5, 0.5, 0.5, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-    
+
     // set the blend mode to "source over" so that CI will use that
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    
+
     if (filteredImage)
         [_ciContext drawImage:filteredImage inRect:_videoPreviewViewBounds fromRect:drawRect];
-    
+
     [_videoPreviewView display];
 }
 
