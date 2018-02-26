@@ -13,7 +13,7 @@
 @interface RealTimeFilterVC ()<AVCaptureVideoDataOutputSampleBufferDelegate>
 @property (nonatomic, strong) AVCaptureDevice *videoDevice;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
-@property (nonatomic, copy) dispatch_queue_t captureSessionQueue;
+@property (nonatomic) dispatch_queue_t captureSessionQueue;
 
 //We will use GLKView to render preview. Declare new properties like following:
 @property (nonatomic, strong) GLKView *videoPreviewView;
@@ -114,7 +114,7 @@
     _captureSession = [[AVCaptureSession alloc] init];
     _captureSession.sessionPreset = preset;
     
-// Configure captureSession. Since we will use CIImage and CIFilter to apply filter to video output, we need to change the output format to kCVPixelFormatType32BGRA which can be used by CIImage.
+    // Configure captureSession. Since we will use CIImage and CIFilter to apply filter to video output, we need to change the output format to kCVPixelFormatType32BGRA which can be used by CIImage.
     // CoreImage wants BGRA pixel format
     NSDictionary *outputSettings = @{
                                      (id)kCVPixelBufferPixelFormatTypeKey : [NSNumber numberWithInteger:kCVPixelFormatType_32BGRA]

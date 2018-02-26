@@ -20,6 +20,9 @@
 		8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC35D2003D6C30019AE11 /* UIFontVC.m */; };
 		8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */; };
 		8D3AC3652004A5800019AE11 /* VTKS ANIMAL 2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */; };
+		8D6B7F7C2043B87800782AA6 /* LTVideoCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7B2043B87800782AA6 /* LTVideoCapturePipeline.m */; };
+		8D6B7F7F2043B99000782AA6 /* LTCIFilterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7E2043B99000782AA6 /* LTCIFilterRenderer.m */; };
+		8D6B7F822043D5C900782AA6 /* LTVideoAssetWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F812043D5C900782AA6 /* LTVideoAssetWriter.m */; };
 		8D6CFA30202DA6BB00AAA61E /* RealTimeFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6CFA2F202DA6BB00AAA61E /* RealTimeFilterVC.m */; };
 		8D6CFA332038022300AAA61E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6CFA322038022300AAA61E /* Camera.m */; };
 		8D9C3AE4200EE1910084B237 /* OpenGLESRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */; };
@@ -50,6 +53,13 @@
 		8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringVC.h; sourceTree = "<group>"; };
 		8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringVC.m; sourceTree = "<group>"; };
 		8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VTKS ANIMAL 2.ttf"; sourceTree = "<group>"; };
+		8D6B7F77204125E500782AA6 /* BlogDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlogDemo.pch; sourceTree = "<group>"; };
+		8D6B7F7A2043B87800782AA6 /* LTVideoCapturePipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTVideoCapturePipeline.h; sourceTree = "<group>"; };
+		8D6B7F7B2043B87800782AA6 /* LTVideoCapturePipeline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTVideoCapturePipeline.m; sourceTree = "<group>"; };
+		8D6B7F7D2043B99000782AA6 /* LTCIFilterRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTCIFilterRenderer.h; sourceTree = "<group>"; };
+		8D6B7F7E2043B99000782AA6 /* LTCIFilterRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTCIFilterRenderer.m; sourceTree = "<group>"; };
+		8D6B7F802043D5C900782AA6 /* LTVideoAssetWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTVideoAssetWriter.h; sourceTree = "<group>"; };
+		8D6B7F812043D5C900782AA6 /* LTVideoAssetWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTVideoAssetWriter.m; sourceTree = "<group>"; };
 		8D6CFA2E202DA6BB00AAA61E /* RealTimeFilterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealTimeFilterVC.h; sourceTree = "<group>"; };
 		8D6CFA2F202DA6BB00AAA61E /* RealTimeFilterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeFilterVC.m; sourceTree = "<group>"; };
 		8D6CFA312038022300AAA61E /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
@@ -90,6 +100,7 @@
 		8D3AC345200103B00019AE11 /* BlogDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8D6B7F792043B76100782AA6 /* LTRecorder */,
 				8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */,
 				8D3AC346200103B00019AE11 /* AppDelegate.h */,
 				8D3AC347200103B00019AE11 /* AppDelegate.m */,
@@ -115,6 +126,7 @@
 				8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */,
 				8D6CFA2E202DA6BB00AAA61E /* RealTimeFilterVC.h */,
 				8D6CFA2F202DA6BB00AAA61E /* RealTimeFilterVC.m */,
+				8D6B7F77204125E500782AA6 /* BlogDemo.pch */,
 				8D3AC34C200103B00019AE11 /* Main.storyboard */,
 				8D3AC34F200103B00019AE11 /* Assets.xcassets */,
 				8D3AC351200103B00019AE11 /* LaunchScreen.storyboard */,
@@ -122,6 +134,19 @@
 				8D3AC355200103B00019AE11 /* main.m */,
 			);
 			path = BlogDemo;
+			sourceTree = "<group>";
+		};
+		8D6B7F792043B76100782AA6 /* LTRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				8D6B7F7A2043B87800782AA6 /* LTVideoCapturePipeline.h */,
+				8D6B7F7B2043B87800782AA6 /* LTVideoCapturePipeline.m */,
+				8D6B7F7D2043B99000782AA6 /* LTCIFilterRenderer.h */,
+				8D6B7F7E2043B99000782AA6 /* LTCIFilterRenderer.m */,
+				8D6B7F802043D5C900782AA6 /* LTVideoAssetWriter.h */,
+				8D6B7F812043D5C900782AA6 /* LTVideoAssetWriter.m */,
+			);
+			path = LTRecorder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +221,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6B7F7F2043B99000782AA6 /* LTCIFilterRenderer.m in Sources */,
+				8D6B7F7C2043B87800782AA6 /* LTVideoCapturePipeline.m in Sources */,
 				8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */,
+				8D6B7F822043D5C900782AA6 /* LTVideoAssetWriter.m in Sources */,
 				8D3AC34B200103B00019AE11 /* ViewController.m in Sources */,
 				8D15CC792008DD45004D1040 /* ShadeVC.m in Sources */,
 				8D9C3AE4200EE1910084B237 /* OpenGLESRenderVC.m in Sources */,
@@ -344,6 +372,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6T4NBF4XM2;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BlogDemo/BlogDemo.pch";
 				INFOPLIST_FILE = BlogDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -359,6 +390,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6T4NBF4XM2;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BlogDemo/BlogDemo.pch";
 				INFOPLIST_FILE = BlogDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

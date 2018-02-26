@@ -1,0 +1,23 @@
+//
+//  BlogDemo.pch
+//  BlogDemo
+//
+//  Created by 孟令通 on 2018/2/24.
+//  Copyright © 2018年 LryMlt. All rights reserved.
+//
+
+#ifndef BlogDemo_pch
+#define BlogDemo_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+/** 屏幕尺寸 **/
+#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+
+/** 基于6s 计算屏幕宽高比 **/
+#define WIDTHFIT ([UIScreen mainScreen].bounds.size.width / 375.0f)
+#define HEIGHTFIT ([UIScreen mainScreen].bounds.size.height / 667.0f)
+
+#endif /* BlogDemo_pch */
