@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+#import <AVFoundation/AVFoundation.h>
+
+@protocol LTVideoCapturePipelineDelegate;
+
 @interface LTVideoCapturePipeline : NSObject
+
+- (instancetype)initWithDelegate:(id<LTVideoCapturePipelineDelegate>)delegate;
+
+- (void)startRunning;
+
+@end
+
+@protocol LTVideoCapturePipelineDelegate <NSObject>
+
+- (void)capturePipeline:(LTVideoCapturePipeline *)capturePipeline previewPixelBufferReadyForDisplay:(CVPixelBufferRef)previewPixelBuffer;
 
 @end

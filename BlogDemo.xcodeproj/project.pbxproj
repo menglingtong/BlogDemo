@@ -23,8 +23,9 @@
 		8D6B7F7C2043B87800782AA6 /* LTVideoCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7B2043B87800782AA6 /* LTVideoCapturePipeline.m */; };
 		8D6B7F7F2043B99000782AA6 /* LTCIFilterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7E2043B99000782AA6 /* LTCIFilterRenderer.m */; };
 		8D6B7F822043D5C900782AA6 /* LTVideoAssetWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F812043D5C900782AA6 /* LTVideoAssetWriter.m */; };
+		8D6B7F892043F36200782AA6 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F882043F36200782AA6 /* Camera.m */; };
+		8D6B7F8C2043F38400782AA6 /* LTCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F8B2043F38400782AA6 /* LTCameraVC.m */; };
 		8D6CFA30202DA6BB00AAA61E /* RealTimeFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6CFA2F202DA6BB00AAA61E /* RealTimeFilterVC.m */; };
-		8D6CFA332038022300AAA61E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6CFA322038022300AAA61E /* Camera.m */; };
 		8D9C3AE4200EE1910084B237 /* OpenGLESRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */; };
 		8D9C3AE7200FB49E0084B237 /* CoreImageSampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C3AE6200FB49E0084B237 /* CoreImageSampleVC.m */; };
 /* End PBXBuildFile section */
@@ -60,10 +61,12 @@
 		8D6B7F7E2043B99000782AA6 /* LTCIFilterRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTCIFilterRenderer.m; sourceTree = "<group>"; };
 		8D6B7F802043D5C900782AA6 /* LTVideoAssetWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTVideoAssetWriter.h; sourceTree = "<group>"; };
 		8D6B7F812043D5C900782AA6 /* LTVideoAssetWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTVideoAssetWriter.m; sourceTree = "<group>"; };
+		8D6B7F872043F36200782AA6 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		8D6B7F882043F36200782AA6 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		8D6B7F8A2043F38400782AA6 /* LTCameraVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTCameraVC.h; sourceTree = "<group>"; };
+		8D6B7F8B2043F38400782AA6 /* LTCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTCameraVC.m; sourceTree = "<group>"; };
 		8D6CFA2E202DA6BB00AAA61E /* RealTimeFilterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealTimeFilterVC.h; sourceTree = "<group>"; };
 		8D6CFA2F202DA6BB00AAA61E /* RealTimeFilterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeFilterVC.m; sourceTree = "<group>"; };
-		8D6CFA312038022300AAA61E /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		8D6CFA322038022300AAA61E /* Camera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		8D9C3AE2200EE1910084B237 /* OpenGLESRenderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenGLESRenderVC.h; sourceTree = "<group>"; };
 		8D9C3AE3200EE1910084B237 /* OpenGLESRenderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLESRenderVC.m; sourceTree = "<group>"; };
 		8D9C3AE5200FB49E0084B237 /* CoreImageSampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreImageSampleVC.h; sourceTree = "<group>"; };
@@ -100,14 +103,15 @@
 		8D3AC345200103B00019AE11 /* BlogDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8D6B7F832043F31100782AA6 /* Camera */,
 				8D6B7F792043B76100782AA6 /* LTRecorder */,
 				8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */,
 				8D3AC346200103B00019AE11 /* AppDelegate.h */,
 				8D3AC347200103B00019AE11 /* AppDelegate.m */,
 				8D15CC7D2009D094004D1040 /* BaseVC.h */,
 				8D15CC7E2009D094004D1040 /* BaseVC.m */,
-				8D6CFA312038022300AAA61E /* Camera.h */,
-				8D6CFA322038022300AAA61E /* Camera.m */,
+				8D6B7F872043F36200782AA6 /* Camera.h */,
+				8D6B7F882043F36200782AA6 /* Camera.m */,
 				8D3AC349200103B00019AE11 /* ViewController.h */,
 				8D3AC34A200103B00019AE11 /* ViewController.m */,
 				8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */,
@@ -147,6 +151,15 @@
 				8D6B7F812043D5C900782AA6 /* LTVideoAssetWriter.m */,
 			);
 			path = LTRecorder;
+			sourceTree = "<group>";
+		};
+		8D6B7F832043F31100782AA6 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				8D6B7F8A2043F38400782AA6 /* LTCameraVC.h */,
+				8D6B7F8B2043F38400782AA6 /* LTCameraVC.m */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,10 +246,11 @@
 				8D3AC348200103B00019AE11 /* AppDelegate.m in Sources */,
 				8D6CFA30202DA6BB00AAA61E /* RealTimeFilterVC.m in Sources */,
 				8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */,
+				8D6B7F892043F36200782AA6 /* Camera.m in Sources */,
 				8D15CC822009D142004D1040 /* FilterVC.m in Sources */,
 				8D15CC7F2009D094004D1040 /* BaseVC.m in Sources */,
+				8D6B7F8C2043F38400782AA6 /* LTCameraVC.m in Sources */,
 				8D9C3AE7200FB49E0084B237 /* CoreImageSampleVC.m in Sources */,
-				8D6CFA332038022300AAA61E /* Camera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
