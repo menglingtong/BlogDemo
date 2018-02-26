@@ -16,6 +16,11 @@
     id<LTVideoCapturePipelineDelegate> _delegate;
 }
 
+// Because we specify __attribute__((NSObject)) ARC will manage the lifetime of the backing ivars even though they are CF types.
+// 因为我们指定了__attribute__((NSObject))，即使它们是CF类型，ARC也会管理后备ivars的生命周期。
+@property (nonatomic, strong) __attribute__((NSObject)) CVPixelBufferRef currentPreviewPixelBuffer;
+@property (nonatomic, strong) __attribute__((NSObject)) CMFormatDescriptionRef outputVideoFormatDescription;
+
 @end
 
 @implementation LTVideoCapturePipeline
@@ -37,6 +42,16 @@
 }
 
 - (void)stopRunning
+{
+    
+}
+
+- (void)startRecord
+{
+    
+}
+
+- (void)stopRecord
 {
     
 }
@@ -75,9 +90,21 @@
 {
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     
-    if (_delegate && [_delegate respondsToSelector:@selector(capturePipeline:previewPixelBufferReadyForDisplay:)]) {
-        [_delegate capturePipeline:self previewPixelBufferReadyForDisplay:pixelBuffer];
+    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+    
+    if (self.outputVideoFormatDescription == NULL) {
+        
+        [self _setupVideoPipelineWithInputFormatDescription:formatDescription];
+    } else {
+        if (_delegate && [_delegate respondsToSelector:@selector(capturePipeline:previewPixelBufferReadyForDisplay:)]) {
+            [_delegate capturePipeline:self previewPixelBufferReadyForDisplay:pixelBuffer];
+        }
     }
+}
+
+- (void)_setupVideoPipelineWithInputFormatDescription:(CMFormatDescriptionRef)inputFormatDescription
+{
+    self.outputVideoFormatDescription = inputFormatDescription;
 }
 
 @end

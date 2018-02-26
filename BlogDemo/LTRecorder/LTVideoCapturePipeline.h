@@ -17,6 +17,10 @@
 - (instancetype)initWithDelegate:(id<LTVideoCapturePipelineDelegate>)delegate;
 
 - (void)startRunning;
+- (void)stopRunning;
+
+- (void)startRecord;
+- (void)stopRecord;
 
 @end
 
