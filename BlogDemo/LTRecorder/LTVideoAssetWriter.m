@@ -18,6 +18,7 @@
 {
     NSURL *_url;
     AVAssetWriter *_assetWriter;
+    BOOL _haveStartedSession;
     
     CMFormatDescriptionRef _videoTrackSourceFormatDescription;
     CGAffineTransform _videoTrackTransform;
@@ -58,17 +59,38 @@
 
 - (void)appendVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
-    
+    [self appendSampleBuffer:sampleBuffer ofMediaType:AVMediaTypeVideo];
 }
 
 - (void)appendVideoPixelBuffer:(CVPixelBufferRef)pixelBuffer withPresentationTime:(CMTime)presentationTime
 {
+    CMSampleBufferRef sampleBuffer = NULL;
     
+    CMSampleTimingInfo timingInfo = {0,};
+    timingInfo.duration = kCMTimeInvalid;
+    timingInfo.decodeTimeStamp = kCMTimeInvalid;
+    timingInfo.presentationTimeStamp = presentationTime;
+    
+    OSStatus err = CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, pixelBuffer, true, NULL, NULL, _videoTrackSourceFormatDescription, &timingInfo, &sampleBuffer);
+    
+    if (sampleBuffer) {
+        [self appendSampleBuffer:sampleBuffer ofMediaType:AVMediaTypeVideo];
+    }
 }
 
 - (void)appendSampleBuffer:(CMSampleBufferRef)sampleBuffer ofMediaType:(NSString *)mediaType
 {
+    if (!_haveStartedSession) {
+        [_assetWriter startSessionAtSourceTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
+        _haveStartedSession = YES;
+    }
     
+    if (_videoInput.isReadyForMoreMediaData) {
+        if ( ![_videoInput appendSampleBuffer:sampleBuffer] ) {
+            
+        }
+    }
+    CFRelease(sampleBuffer);
 }
 
 - (BOOL)setupAssetWriterInputWithSourceFormatDescription:(CMFormatDescriptionRef)sourceFormatDescription transform:(CGAffineTransform)transform settings:(NSDictionary *)videoSettings error:(NSError **)error
