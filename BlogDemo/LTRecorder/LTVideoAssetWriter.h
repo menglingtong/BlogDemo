@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import <CoreMedia/CMFormatDescription.h>
+#import <CoreMedia/CMSampleBuffer.h>
+
 @interface LTVideoAssetWriter : NSObject
+
+- (void)addVideoTrackWithSouceFormatDescription:(CMFormatDescriptionRef)sourceFormatDescription transform:(CGAffineTransform)transform settings:(NSDictionary *)videoSettings;
+
+- (void)prepareToRecord;
 
 @end
