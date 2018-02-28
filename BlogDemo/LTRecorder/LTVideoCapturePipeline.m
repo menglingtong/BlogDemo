@@ -8,18 +8,38 @@
 
 #import "LTVideoCapturePipeline.h"
 
+#import "LTVideoAssetWriter.h"
+
+typedef NS_ENUM( NSInteger, LTWriterRecordingStatus )
+{
+    LTWriterRecordingStatusIdle = 0,
+    LTWriterRecordingStatusStartingRecording,
+    LTWriterRecordingStatusRecording,
+    LTWriterRecordingStatusStoppingRecording,
+}; // internal state machine
+
 @interface LTVideoCapturePipeline ()<AVCaptureVideoDataOutputSampleBufferDelegate>
 {
     AVCaptureSession *_session;
+    AVCaptureDevice *_videoDevice;
     AVCaptureConnection *_videoConnection;
+    AVCaptureVideoOrientation _videoBufferOrientation;
     dispatch_queue_t _sessionQueue;
     id<LTVideoCapturePipelineDelegate> _delegate;
+    
+    LTVideoAssetWriter *_assetWriter;
+    
+    NSURL *_url;
+    LTWriterRecordingStatus _recordingStatus;
+    NSDictionary *_videoCompressionSettings;
 }
 
 // Because we specify __attribute__((NSObject)) ARC will manage the lifetime of the backing ivars even though they are CF types.
 // 因为我们指定了__attribute__((NSObject))，即使它们是CF类型，ARC也会管理后备ivars的生命周期。
 @property (nonatomic, strong) __attribute__((NSObject)) CVPixelBufferRef currentPreviewPixelBuffer;
 @property (nonatomic, strong) __attribute__((NSObject)) CMFormatDescriptionRef outputVideoFormatDescription;
+
+@property (atomic) AVCaptureVideoOrientation recordingOrientation;
 
 @end
 
@@ -29,6 +49,8 @@
 {
     if (self = [super init]) {
         _delegate = delegate;
+        _recordingOrientation = AVCaptureVideoOrientationPortrait;
+        _url = [[NSURL alloc] initFileURLWithPath:[NSString pathWithComponents:@[NSTemporaryDirectory(), @"RealFilter.MOV"]]];
     }
     return self;
 }
@@ -43,17 +65,36 @@
 
 - (void)stopRunning
 {
+    [self stopRecord];
     
+    [_session stopRunning];
+    
+    [self teardownCaptureSession];
 }
 
 - (void)startRecord
 {
+    if (_recordingStatus != LTWriterRecordingStatusIdle) {
+        return;
+    }
+    _recordingStatus = LTWriterRecordingStatusRecording;
     
+    _assetWriter = [[LTVideoAssetWriter alloc] initWithUrl:_url];
+    
+    CGAffineTransform videoTransform = [self transformFromVideoBufferOrientationToOrientation:self.recordingOrientation withAutoMirroring:NO];
+    
+    [_assetWriter addVideoTrackWithSouceFormatDescription:self.outputVideoFormatDescription transform:videoTransform settings:_videoCompressionSettings];
+    
+    [_assetWriter prepareToRecord];
 }
 
 - (void)stopRecord
 {
-    
+    if (_recordingStatus != LTWriterRecordingStatusRecording) {
+        return;
+    }
+    _recordingStatus = LTWriterRecordingStatusStoppingRecording;
+    [_assetWriter finishRecording];
 }
 
 - (void)_setupSession
@@ -64,9 +105,9 @@
     
     _session = [[AVCaptureSession alloc] init];
     
-    AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    _videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError *videoDeviceError = nil;
-    AVCaptureDeviceInput *videoInput = [[AVCaptureDeviceInput alloc]  initWithDevice:videoDevice error:&videoDeviceError];
+    AVCaptureDeviceInput *videoInput = [[AVCaptureDeviceInput alloc]  initWithDevice:_videoDevice error:&videoDeviceError];
     if ([_session canAddInput:videoInput]) {
         [_session addInput:videoInput];
     }
@@ -83,6 +124,17 @@
     }
     
     _session.sessionPreset = AVCaptureSessionPresetHigh;
+    _videoCompressionSettings = [[videoOutput recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeQuickTimeMovie] copy];
+    _videoBufferOrientation = _videoConnection.videoOrientation;
+}
+
+- (void)teardownCaptureSession
+{
+    if ( _session )
+    {
+        _session = nil;
+        _videoCompressionSettings = nil;
+    }
 }
 
 #pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
@@ -92,10 +144,15 @@
     
     CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
     
+    CMTime timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+    
     if (self.outputVideoFormatDescription == NULL) {
         
         [self _setupVideoPipelineWithInputFormatDescription:formatDescription];
     } else {
+        if (_recordingStatus == LTWriterRecordingStatusRecording) {
+            [_assetWriter appendVideoPixelBuffer:pixelBuffer withPresentationTime:timestamp];
+        }
         if (_delegate && [_delegate respondsToSelector:@selector(capturePipeline:previewPixelBufferReadyForDisplay:)]) {
             [_delegate capturePipeline:self previewPixelBufferReadyForDisplay:pixelBuffer];
         }
@@ -105,6 +162,60 @@
 - (void)_setupVideoPipelineWithInputFormatDescription:(CMFormatDescriptionRef)inputFormatDescription
 {
     self.outputVideoFormatDescription = inputFormatDescription;
+}
+
+#pragma mark - Utilities
+// Auto mirroring: Front camera is mirrored; back camera isn't
+- (CGAffineTransform)transformFromVideoBufferOrientationToOrientation:(AVCaptureVideoOrientation)orientation withAutoMirroring:(BOOL)mirror
+{
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    // Calculate offsets from an arbitrary reference orientation (portrait)
+    CGFloat orientationAngleOffset = angleOffsetFromPortraitOrientationToOrientation( orientation );
+    CGFloat videoOrientationAngleOffset = angleOffsetFromPortraitOrientationToOrientation( _videoBufferOrientation );
+    
+    // Find the difference in angle between the desired orientation and the video orientation
+    CGFloat angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
+    transform = CGAffineTransformMakeRotation( angleOffset );
+    
+    if ( _videoDevice.position == AVCaptureDevicePositionFront )
+    {
+        if ( mirror ) {
+            transform = CGAffineTransformScale( transform, -1, 1 );
+        }
+        else {
+            if ( UIInterfaceOrientationIsPortrait( (UIInterfaceOrientation)orientation ) ) {
+                transform = CGAffineTransformRotate( transform, M_PI );
+            }
+        }
+    }
+    
+    return transform;
+}
+
+static CGFloat angleOffsetFromPortraitOrientationToOrientation(AVCaptureVideoOrientation orientation)
+{
+    CGFloat angle = 0.0;
+    
+    switch ( orientation )
+    {
+        case AVCaptureVideoOrientationPortrait:
+            angle = 0.0;
+            break;
+        case AVCaptureVideoOrientationPortraitUpsideDown:
+            angle = M_PI;
+            break;
+        case AVCaptureVideoOrientationLandscapeRight:
+            angle = -M_PI_2;
+            break;
+        case AVCaptureVideoOrientationLandscapeLeft:
+            angle = M_PI_2;
+            break;
+        default:
+            break;
+    }
+    
+    return angle;
 }
 
 @end

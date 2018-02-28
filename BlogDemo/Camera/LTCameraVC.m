@@ -12,6 +12,9 @@
 #import <GLKit/GLKit.h>
 
 @interface LTCameraVC ()<LTVideoCapturePipelineDelegate>
+{
+    BOOL _recording;
+}
 
 @property (nonatomic, strong) LTVideoCapturePipeline *capture;
 
@@ -33,6 +36,36 @@
     
     self.capture = [[LTVideoCapturePipeline alloc] initWithDelegate:self];
     [_capture startRunning];
+    
+    [self setupUI];
+}
+
+- (void)setupUI
+{
+    UIButton *shoot = [UIButton buttonWithType:UIButtonTypeCustom];
+    shoot.frame = CGRectMake(SCREENWIDTH / 2.0 - 25, SCREENHEIGHT - 70, 50, 50);
+    shoot.layer.cornerRadius = 25;
+    shoot.layer.masksToBounds = YES;
+    shoot.layer.borderWidth = 2;
+    shoot.layer.borderColor = [UIColor colorWithRed:0.81 green:0.13 blue:0.31 alpha:1.00].CGColor;
+    shoot.backgroundColor = [UIColor colorWithRed:0.68 green:1.00 blue:0.22 alpha:1.00];
+    
+    [self.view addSubview:shoot];
+    
+    [shoot addTarget:self action:@selector(didClickedShootButton:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)didClickedShootButton:(UIButton *)button
+{
+    [_capture startRunning];
+    
+    if (_recording) {
+        [_capture stopRecord];
+        _recording = NO;
+    } else {
+        [_capture startRecord];
+        _recording = YES;
+    }
 }
 
 - (void)setupGLKView

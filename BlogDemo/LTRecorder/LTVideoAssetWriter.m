@@ -30,6 +30,16 @@
 
 @implementation LTVideoAssetWriter
 
+- (instancetype)initWithUrl:(NSURL *)url
+{
+    self = [super init];
+    if (self) {
+        _url = url;
+        
+    }
+    return self;
+}
+
 - (void)addVideoTrackWithSouceFormatDescription:(CMFormatDescriptionRef)sourceFormatDescription transform:(CGAffineTransform)transform settings:(NSDictionary *)videoSettings
 {
     _videoTrackSourceFormatDescription = (CMFormatDescriptionRef)CFRetain(sourceFormatDescription);
@@ -55,6 +65,13 @@
             error = _assetWriter.error;
         }
     }
+}
+
+- (void)finishRecording
+{
+    [_assetWriter finishWritingWithCompletionHandler:^{
+        
+    }];
 }
 
 - (void)appendVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer

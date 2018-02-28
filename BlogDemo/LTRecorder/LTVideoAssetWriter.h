@@ -13,8 +13,14 @@
 
 @interface LTVideoAssetWriter : NSObject
 
+- (instancetype)initWithUrl:(NSURL *)url;
+
 - (void)addVideoTrackWithSouceFormatDescription:(CMFormatDescriptionRef)sourceFormatDescription transform:(CGAffineTransform)transform settings:(NSDictionary *)videoSettings;
 
 - (void)prepareToRecord;
+- (void)finishRecording;
+
+- (void)appendVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+- (void)appendVideoPixelBuffer:(CVPixelBufferRef)pixelBuffer withPresentationTime:(CMTime)presentationTime;
 
 @end
