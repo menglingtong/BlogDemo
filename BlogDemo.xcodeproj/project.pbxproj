@@ -20,6 +20,7 @@
 		8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC35D2003D6C30019AE11 /* UIFontVC.m */; };
 		8D3AC3612003D6EC0019AE11 /* NSAttributedStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */; };
 		8D3AC3652004A5800019AE11 /* VTKS ANIMAL 2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */; };
+		8D61BD39205130B800D0207F /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D61BD38205130B800D0207F /* NSString+Additions.m */; };
 		8D6B7F7C2043B87800782AA6 /* LTVideoCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7B2043B87800782AA6 /* LTVideoCapturePipeline.m */; };
 		8D6B7F7F2043B99000782AA6 /* LTCIFilterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7E2043B99000782AA6 /* LTCIFilterRenderer.m */; };
 		8D6B7F822043D5C900782AA6 /* LTVideoAssetWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F812043D5C900782AA6 /* LTVideoAssetWriter.m */; };
@@ -54,6 +55,8 @@
 		8D3AC35F2003D6EC0019AE11 /* NSAttributedStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringVC.h; sourceTree = "<group>"; };
 		8D3AC3602003D6EC0019AE11 /* NSAttributedStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringVC.m; sourceTree = "<group>"; };
 		8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VTKS ANIMAL 2.ttf"; sourceTree = "<group>"; };
+		8D61BD37205130B800D0207F /* NSString+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		8D61BD38205130B800D0207F /* NSString+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		8D6B7F77204125E500782AA6 /* BlogDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlogDemo.pch; sourceTree = "<group>"; };
 		8D6B7F7A2043B87800782AA6 /* LTVideoCapturePipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTVideoCapturePipeline.h; sourceTree = "<group>"; };
 		8D6B7F7B2043B87800782AA6 /* LTVideoCapturePipeline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTVideoCapturePipeline.m; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		8D3AC345200103B00019AE11 /* BlogDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8D61BD3620512E4B00D0207F /* LTCategory */,
 				8D6B7F832043F31100782AA6 /* Camera */,
 				8D6B7F792043B76100782AA6 /* LTRecorder */,
 				8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */,
@@ -138,6 +142,15 @@
 				8D3AC355200103B00019AE11 /* main.m */,
 			);
 			path = BlogDemo;
+			sourceTree = "<group>";
+		};
+		8D61BD3620512E4B00D0207F /* LTCategory */ = {
+			isa = PBXGroup;
+			children = (
+				8D61BD37205130B800D0207F /* NSString+Additions.h */,
+				8D61BD38205130B800D0207F /* NSString+Additions.m */,
+			);
+			path = LTCategory;
 			sourceTree = "<group>";
 		};
 		8D6B7F792043B76100782AA6 /* LTRecorder */ = {
@@ -245,6 +258,7 @@
 				8D3AC356200103B00019AE11 /* main.m in Sources */,
 				8D3AC348200103B00019AE11 /* AppDelegate.m in Sources */,
 				8D6CFA30202DA6BB00AAA61E /* RealTimeFilterVC.m in Sources */,
+				8D61BD39205130B800D0207F /* NSString+Additions.m in Sources */,
 				8D3AC35E2003D6C30019AE11 /* UIFontVC.m in Sources */,
 				8D6B7F892043F36200782AA6 /* Camera.m in Sources */,
 				8D15CC822009D142004D1040 /* FilterVC.m in Sources */,
