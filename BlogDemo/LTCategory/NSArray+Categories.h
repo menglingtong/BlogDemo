@@ -47,4 +47,15 @@
  */
 - (nullable id)popLastObject;
 
+/**
+ Reverse the index of object in this array.
+ Example: Before @[ @1, @2, @3 ], After @[ @3, @2, @1 ].
+ */
+- (void)reverse;
+
+/**
+ Sort the object in this array randomly.
+ */
+- (void)shuffle;
+
 @end
