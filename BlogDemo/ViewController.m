@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "NSDictionary+Additions.h"
+
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
@@ -23,6 +25,13 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     [self.view addSubview:_tableView];
     [self getDataSourceArray];
+    
+    NSDictionary *dic = @{@"WX": @"mlt296634507", @"Name": @"MLT", @"Age": @(18), @"Base": @"yyy", @"Json": @"qqqq", @"Gender": @"mail"};
+    
+    NSString *str = [dic serializationSortedByKey];
+    
+    NSLog(@"%@", str);
+    
 }
 
 - (void)getDataSourceArray

@@ -22,6 +22,7 @@
 		8D3AC3652004A5800019AE11 /* VTKS ANIMAL 2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D3AC3642004A5800019AE11 /* VTKS ANIMAL 2.ttf */; };
 		8D3F14FD2053B7D2009E1A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F14FC2053B7D2009E1A2B /* UIView+Additions.m */; };
 		8D3F150020552163009E1A2B /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F14FF20552163009E1A2B /* NSArray+Categories.m */; };
+		8D3F150320563D17009E1A2B /* NSDictionary+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F150220563D17009E1A2B /* NSDictionary+Additions.m */; };
 		8D61BD39205130B800D0207F /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D61BD38205130B800D0207F /* NSString+Additions.m */; };
 		8D6B7F7C2043B87800782AA6 /* LTVideoCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7B2043B87800782AA6 /* LTVideoCapturePipeline.m */; };
 		8D6B7F7F2043B99000782AA6 /* LTCIFilterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B7F7E2043B99000782AA6 /* LTCIFilterRenderer.m */; };
@@ -61,6 +62,8 @@
 		8D3F14FC2053B7D2009E1A2B /* UIView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		8D3F14FE20552163009E1A2B /* NSArray+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Categories.h"; sourceTree = "<group>"; };
 		8D3F14FF20552163009E1A2B /* NSArray+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Categories.m"; sourceTree = "<group>"; };
+		8D3F150120563D17009E1A2B /* NSDictionary+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Additions.h"; sourceTree = "<group>"; };
+		8D3F150220563D17009E1A2B /* NSDictionary+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Additions.m"; sourceTree = "<group>"; };
 		8D61BD37205130B800D0207F /* NSString+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		8D61BD38205130B800D0207F /* NSString+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		8D6B7F77204125E500782AA6 /* BlogDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlogDemo.pch; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				8D3F14FC2053B7D2009E1A2B /* UIView+Additions.m */,
 				8D3F14FE20552163009E1A2B /* NSArray+Categories.h */,
 				8D3F14FF20552163009E1A2B /* NSArray+Categories.m */,
+				8D3F150120563D17009E1A2B /* NSDictionary+Additions.h */,
+				8D3F150220563D17009E1A2B /* NSDictionary+Additions.m */,
 			);
 			path = LTCategory;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				8D15CC792008DD45004D1040 /* ShadeVC.m in Sources */,
 				8D9C3AE4200EE1910084B237 /* OpenGLESRenderVC.m in Sources */,
 				8D3F14FD2053B7D2009E1A2B /* UIView+Additions.m in Sources */,
+				8D3F150320563D17009E1A2B /* NSDictionary+Additions.m in Sources */,
 				8D15CC7C20090CF7004D1040 /* ShadeLabel.m in Sources */,
 				8D3AC356200103B00019AE11 /* main.m in Sources */,
 				8D3AC348200103B00019AE11 /* AppDelegate.m in Sources */,

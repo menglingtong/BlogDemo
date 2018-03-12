@@ -21,9 +21,9 @@
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    LTCameraVC *rootVC = [LTCameraVC new];
+    ViewController *rootVC = [ViewController new];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    self.window.rootViewController = rootVC;
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     
     return YES;
